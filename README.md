@@ -54,7 +54,7 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 ## 许可协议
 
 本仓库中的脚本文件 `build.bash` 和 `build_font_from_bdf.py` 遵循 [GNU GENERAL PUBLIC LICENSE Version 3 许可协议](LICENSE)，
-`original/reference/` 目录下的所有参照文件遵循 [Unlicense 许可协议](original/reference/LICENSE)，
+`original/references/` 目录下的所有参照文件遵循 [Unlicense 许可协议](original/references/LICENSE)，
 本项目生成的字体文件遵循[自由中文字体和 GNU GENERAL PUBLIC LICENSE Version 2 许可协议](FONT-LICENSE)。
 
 ## 做出贡献
@@ -112,8 +112,8 @@ Place `xibo.psfu.gz` in the `consolefonts` directory (located at `/usr/share/con
 
 ## License
 
-The script files `build.bash` and `build_font_from_bdf.py` in this repository are licensed under the [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE). 
-All reference files in the `original/reference/` directory are licensed under the [Unlicense](original/reference/LICENSE).
+The script files `build.bash` and `build_font_from_bdf.py` in this repository are licensed under the [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE).
+All reference files in the `original/references/` directory are licensed under the [Unlicense](original/references/LICENSE).
 The generated font files in this project are licensed under the [Free Chinese Font License and GNU GENERAL PUBLIC LICENSE Version 2](FONT-LICENSE).
 
 ## Contributing
