@@ -1,0 +1,85 @@
+name: 自动发行版本
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    name: 发行新版本
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 检查版本
+        id: version-check
+        run: |
+          VERSION=$(./scripts/is-newer-version.bash)
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          if [ "$VERSION" != "0" ]; then
+            echo "检测到新版本: $VERSION"
+          else
+            echo "没有新版本需要发行"
+          fi
+
+      - name: 推送标签
+        if: steps.version-check.outputs.version != '0'
+        id: push-tag
+        run: |
+          tag="v${{ steps.version-check.outputs.version }}"
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git tag -a "${tag}" -m "Release ${tag}"
+          git push origin "${tag}"
+          echo "tag_name=${tag}" >> $GITHUB_OUTPUT
+
+      - name: 配置环境
+        if: steps.version-check.outputs.version != '0'
+        run: |
+          # 安装 Python 依赖
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
+
+          # 安装构建依赖
+          sudo apt-get update
+          sudo apt-get install -y build-essential wget tar gzip
+
+      - name: 编译字体
+        if: steps.version-check.outputs.version != '0'
+        run: |
+          # 运行构建脚本
+          bash build.bash
+
+          # 验证输出文件
+          if [ ! -f "output/xibo.psfu.gz" ]; then
+            echo "错误：字体文件生成失败"
+            exit 1
+          fi
+
+          # 显示文件信息
+          ls -la output/xibo.psfu.gz
+
+      - name: 创建 GitHub Release
+        if: steps.version-check.outputs.version != '0'
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          tag: "v${{ steps.version-check.outputs.version }}"
+          artifacts: "output/xibo.psfu.gz,output/xibo.psf,output/xibo.txt"
+
+      - name: 删除标签（如果失败）
+        if: (cancelled() || failure()) && steps.push-tag.outputs.tag_name != ''
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git push --delete origin "${{ steps.push-tag.outputs.tag_name }}"
+          git tag -d "${{ steps.push-tag.outputs.tag_name }}"

@@ -26,18 +26,21 @@ Length: 512
 Width: {width}
 Height: {height}''', end='')
 
-def PrintNonChineseCharacter():
+def PrintNonChineseCharacter(index):
+    count = index
     # 输出空格
-    PrintCharacters('              　')
+    PrintCharacters('              　', count)
+    count += 1
 
     # 打开包含其他字符的参考文件
     with open("original/references/other_characters", encoding="utf-8") as f:
         for lines in f:
             line = lines.split()
-            PrintCharacters(line[0])
+            PrintCharacters(line[0], count)
+            count += 1
+    return count
 
-def PrintCharacters(Characters):
-    global count
+def PrintCharacters(Characters, count):
     Character = Characters[0]
     try:
         # 将汉字编码为对应编码
@@ -52,7 +55,6 @@ def PrintCharacters(Characters):
 
         print("\n%")
         print("//", count, Character)
-        count += 1
 
         # 打印字形的位图表示
         print("Bitmap: ", end="")
@@ -81,20 +83,22 @@ def PrintCharacters(Characters):
             if h == "#":
                 break
             print("[{0:08x}];".format(ord(h)), end="")
-        
-        if count == 32:
-            PrintNonChineseCharacter()
+
     except UnicodeError:
         # 捕获并处理 Unicode 错误
         pass
 
 # 打开包含拼音和对应汉字的参考文件
 with open("original/references/pinyin_hanzi", encoding="utf-8") as f:
+    count = 0
     for line in f:
+        if count == 32:
+            count = PrintNonChineseCharacter(count)
         # 跳过注释行
         if line.startswith("#"):
             continue
         s = line.split()
         if len(s) >= 2:
             hanzis = s[1]
-            PrintCharacters(hanzis)
+            PrintCharacters(hanzis, count)
+            count += 1
