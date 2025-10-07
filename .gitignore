@@ -4,5 +4,6 @@
 # 忽略临时文件夹
 /temp/
 
+AGENTS.md
 QWEN.md
 CLAUDE.md
