@@ -1,6 +1,6 @@
 # ![演示](assets/display.png)
 
-> 简体中文 | [ENGLISH](README.en.md)
+> [ENGLISH](README.en.md) | 简体中文
 
 ## font-xibo
 
@@ -8,12 +8,45 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 
 本项目的灵感来源自 [syllazh](https://github.com/oldherl/syllazh/) 字体。
 
-## 表音文字
+### 表音文字
 
 在使用本字体时，您可能注意到——读音相近的汉字会被统一显示为同一个汉字，如：“用永勇拥擁涌湧咏詠蛹雍踊庸踴泳”中的任意一个汉字会被会统一显示为“用”。
 
 这是因为 Linux TTY 上的字体一般用 kbd 软件包的 setfont 工具更换。它最多支持 512 个字形（glyph），但单个字形可以映射到多个 Unicode 码位。
 因此，xibo 将所有忽略声调的音节相同的汉字都会被映射到同一个字形上，以实现在有限字形数下的汉字显示。
+
+### 终端图形程序显示优化
+
+本字体还针对终端部分常用的图形符号进行优化映射，使其更适合终端使用。部分示例：
+
+- 原符号：
+
+  ```plaintext
+  ┌─┬─┐
+  │ │ │
+  ├─┼─┤
+  │ │ │
+  └─┴─┘
+  ```
+
+- 优化前：
+
+  （无法正确显示）
+
+- 优化后：
+
+  ```plaintext
+  r-T-┐
+  | | |
+  ├-+-┤
+  | | |
+  L-┴-J
+  ```
+
+  其中，`┌` 被映射为字母 `r`，`┬` 被映射为字母 `T`，`┘` 被映射为字母 `J` 等。
+  此类映射在尽量不占用更多字形的情况下最大程度地改善了显示效果。
+
+  ![font-xibo 在 btop 下的表现](assets/btop.png)
 
 ## 构建字体
 
@@ -52,11 +85,11 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 
 ## 许可协议
 
-> 感谢**文泉驿**团队提供的`文泉驿点阵宋体 v1.0.0-RC1 英雄`字体。
+> 感谢**TakWolf**及其团队提供的 `fusion-pixel-font` 字体。
 
-本仓库中的脚本文件 `build.bash` 和 `build_font_from_bdf.py` 遵循 [GNU GENERAL PUBLIC LICENSE Version 3 许可协议](LICENSE)，
+本仓库中的脚本文件 `build.bash`、`build_font_from_bdf.py` 和 `scripts/` 中的所有文件遵循 [GNU GENERAL PUBLIC LICENSE Version 3 许可协议](LICENSE)，
 `original/references/` 目录下的 `original/references/pinyin_hanzi` 遵循 GNU Lesser General Public License (LGPL) 2.1，其余参照文件遵循 [Unlicense 许可协议](original/references/LICENSE)，
-本项目生成的字体文件遵循[自由中文字体和 GNU GENERAL PUBLIC LICENSE Version 2 许可协议](FONT-LICENSE)。
+本项目生成的字体文件遵循 [MIT 许可协议](MIT-LICENSE)或 [SIL OPEN FONT LICENSE Version 1.1 许可协议](SIL-LICENSE)，原字体上游协议详见 [`FONT-LICENSE/`](FONT-LICENSE/) 下文件。
 
 ## 做出贡献
 

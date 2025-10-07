@@ -6,9 +6,9 @@ path=$(pwd)
 mkdir -p $path/temp
 mkdir -p $path/output
 
-# 下载 wqy-bitmapsong-bdf-1.0.0-RC1 的压缩包
-download_url="https://downloads.sourceforge.net/project/wqy/wqy-bitmapfont/1.0.0-RC1/wqy-bitmapsong-bdf-1.0.0-RC1.tar.gz"
-wget "$download_url" -O $path/temp/wqy-bitmapsong-bdf-1.0.0-RC1.tar.gz
+# 下载 fusion-pixel-12px-monospaced-zh_hans 的压缩包
+download_url="https://github.com/TakWolf/fusion-pixel-font/releases/download/2025.10.06/fusion-pixel-font-12px-monospaced-bdf-v2025.10.06.zip"
+wget "$download_url" -O $path/temp/font.zip
 
 # 检查下载是否成功
 if [ $? -ne 0 ]; then
@@ -16,8 +16,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 解压下载的压缩包
-tar -xf $path/temp/wqy-bitmapsong-bdf-1.0.0-RC1.tar.gz -C $path/temp/
+# 解压下载的压缩包到 $path/temp
+unzip $path/temp/font.zip -d $path/temp
 
 # 检查解压是否成功
 if [ $? -ne 0 ]; then
@@ -26,7 +26,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # 列出解压后的目录内容
-ls $path/temp/wqy-bitmapsong/
+ls $path/temp/
 
 # 运行 Python 脚本
 python3 $path/build_font_from_bdf.py > $path/output/xibo.txt

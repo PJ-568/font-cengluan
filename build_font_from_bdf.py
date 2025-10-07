@@ -4,7 +4,7 @@
 from bdflib import reader
 
 # 读取 BDF 格式的字体文件
-font = reader.read_bdf(open("temp/wqy-bitmapsong/wenquanyi_9pt.bdf", "rb"))
+font = reader.read_bdf(open("temp/fusion-pixel-12px-monospaced-zh_hans.bdf", "rb"))
 
 # File format version; currently this must be 0.
 version = '0'
@@ -41,9 +41,9 @@ def PrintNonChineseCharacter(index):
     return count
 
 def PrintCharacters(Characters, count):
-    Character = Characters[0]
+    Character = Characters[0] # 取第一个字符作为展示字
     try:
-        # 将汉字编码为对应编码
+        # 将字符编码为对应编码
         encoding = "utf-8"
         # _enc = codecs.encode(Character, encoding=encoding)
         # 获取对应的字形：即取 ENCODING 变量为字的 Unicode 编码的字形，不同字体中，ENCODING 变量数值的含义可能不同
@@ -76,7 +76,7 @@ def PrintCharacters(Characters, count):
                 ll = ll + " \\"
             print(ll)
 
-        # 打印汉字的 Unicode 编码
+        # 打印字符的 Unicode 编码
         print("Unicode: ", end="")
         for h in Characters:
             # 遇到 # 则停止
@@ -97,8 +97,8 @@ with open("original/references/pinyin_hanzi", encoding="utf-8") as f:
         # 跳过注释行
         if line.startswith("#"):
             continue
-        s = line.split()
+        s = line.split() # 分开拼音和汉字
         if len(s) >= 2:
-            hanzis = s[1]
+            hanzis = s[1] # 取汉字那一条
             PrintCharacters(hanzis, count)
             count += 1
