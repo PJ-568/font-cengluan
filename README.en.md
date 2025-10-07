@@ -55,7 +55,7 @@ Place `xibo.psfu.gz` in the `consolefonts` directory (located at `/usr/share/con
 > Thanks to the **WenQuanYi** team for providing the `WenQuanYi Bitmap Song v1.0.0-RC1 Hero` font.
 
 The script files `build.bash` and `build_font_from_bdf.py` in this repository are licensed under the [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE).
-All reference files in the `original/references/` directory are licensed under the [Unlicense](original/references/LICENSE).
+`original/references/pinyin_hanzi` is licensed under GNU Lesser General Public License (LGPL) 2.1. Other reference files in the `original/references/` directory are licensed under the [Unlicense](original/references/LICENSE).
 The generated font files in this project are licensed under the [Free Chinese Font License and GNU GENERAL PUBLIC LICENSE Version 2](FONT-LICENSE).
 
 ## Contributing

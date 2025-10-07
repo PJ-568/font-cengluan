@@ -55,7 +55,7 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 > 感谢**文泉驿**团队提供的`文泉驿点阵宋体 v1.0.0-RC1 英雄`字体。
 
 本仓库中的脚本文件 `build.bash` 和 `build_font_from_bdf.py` 遵循 [GNU GENERAL PUBLIC LICENSE Version 3 许可协议](LICENSE)，
-`original/references/` 目录下的所有参照文件遵循 [Unlicense 许可协议](original/references/LICENSE)，
+`original/references/` 目录下的 `original/references/pinyin_hanzi` 遵循 GNU Lesser General Public License (LGPL) 2.1，其余参照文件遵循 [Unlicense 许可协议](original/references/LICENSE)，
 本项目生成的字体文件遵循[自由中文字体和 GNU GENERAL PUBLIC LICENSE Version 2 许可协议](FONT-LICENSE)。
 
 ## 做出贡献
