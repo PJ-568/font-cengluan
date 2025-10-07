@@ -2,9 +2,9 @@
 
 > ENGLISH | [简体中文](README.md)
 
-## font-xibo
+## font-cengluan（层峦字体）
 
-Xibo is a Chinese TTY font designed for Linux, aiming to provide Chinese display in TTY without installing kernel patches such as [cjktty](https://github.com/zhmars/cjktty-patches) or third-party software like [kmscon](http://www.freedesktop.org/wiki/Software/kmscon), [fbterm](https://salsa.debian.org/debian/fbterm), or [zhcon](https://zhcon.sourceforge.net/).
+cengluan is a Chinese TTY font designed for Linux, aiming to provide Chinese display in TTY without installing kernel patches such as [cjktty](https://github.com/zhmars/cjktty-patches) or third-party software like [kmscon](http://www.freedesktop.org/wiki/Software/kmscon), [fbterm](https://salsa.debian.org/debian/fbterm), or [zhcon](https://zhcon.sourceforge.net/).
 
 The inspiration for this project comes from the [syllazh](https://github.com/oldherl/syllazh/) font.
 
@@ -13,7 +13,7 @@ The inspiration for this project comes from the [syllazh](https://github.com/old
 When using this font, you may notice that characters with similar pronunciations are displayed as the same character. For example, any of the characters "用永勇拥擁涌湧咏詠蛹雍踊庸踴泳" will be uniformly displayed as "用".
 
 This is because fonts on Linux TTY are generally changed using the `setfont` tool from the kbd package, which supports a maximum of 512 glyphs. However, a single glyph can map to multiple Unicode code points.
-Therefore, Xibo maps all characters with the same pronunciation (ignoring tones) to the same glyph, allowing for Chinese character display within the limited number of glyphs.
+Therefore, cengluan maps all characters with the same pronunciation (ignoring tones) to the same glyph, allowing for Chinese character display within the limited number of glyphs.
 
 ### Terminal User Inerface Display Optimization
 
@@ -46,7 +46,7 @@ This font also optimizes the mapping of commonly used graphical symbols in termi
   Among these, `┌` is mapped to the letter `r`, `┬` is mapped to the letter `T`, `┘` is mapped to the letter `J`, etc.
   This type of mapping maximizes the improvement of display quality without occupying more glyphs (:-D).
 
-  ![btop with font-xibo](assets/btop.png)
+  ![btop with font-cengluan](assets/btop.png)
 
 ### Character Width Display Optimization
 
@@ -64,8 +64,8 @@ This leads to:
 - If all characters are displayed with a width of two units: all half-width characters occupy two columns, but visually only have a width of one unit, resulting in [large gaps between half-width characters](assets/display_old.png).
 
 Given the high difficulty of finding or designing "tall and narrow half-width monospace Chinese fonts" or "compatible full-width English letter fonts",
-font-xibo maps all English letters, Arabic numerals, ASCII punctuation, and other characters to full-width characters in the UTF-8 high range.
-Although each Chinese character is still separated by a [thirty-second character](#thirty-second-character), font-xibo achieves a relatively balanced visual appearance overall.
+font-cengluan maps all English letters, Arabic numerals, ASCII punctuation, and other characters to full-width characters in the UTF-8 high range.
+Although each Chinese character is still separated by a [thirty-second character](#thirty-second-character), font-cengluan achieves a relatively balanced visual appearance overall.
 
 ### Thirty-second Character
 
@@ -76,8 +76,8 @@ The thirty-second character in Linux TTY fonts defaults to `U+20`, which is a sp
 1. Clone the repository:
 
    ```shellscript
-   git clone https://github.com/PJ-568/font-xibo.git
-   cd font-xibo
+   git clone https://github.com/PJ-568/font-cengluan.git
+   cd font-cengluan
    ```
 
 2. Install dependencies:
@@ -94,7 +94,7 @@ The thirty-second character in Linux TTY fonts defaults to `U+20`, which is a sp
 
    During the build process, the script will install `psftools`, which is used to generate the font.
 
-After building, a PSF2 font file named `xibo.psfu.gz` will be generated in the `output/` directory.
+After building, a PSF2 font file named `cengluan.psfu.gz` will be generated in the `output/` directory.
 
 ## Using the Font
 
@@ -104,7 +104,7 @@ After building, a PSF2 font file named `xibo.psfu.gz` will be generated in the `
 >
 > Run `setfont -V` to check the version.
 
-Place `xibo.psfu.gz` in the `consolefonts` directory (located at `/usr/share/consolefonts/` on Debian and `/usr/share/kbd/consolefonts/` on Arch Linux), then execute `setfont xibo` to change the font or `setfont -d xibo` to switch to a double-sized font.
+Place `cengluan.psfu.gz` in the `consolefonts` directory (located at `/usr/share/consolefonts/` on Debian and `/usr/share/kbd/consolefonts/` on Arch Linux), then execute `setfont cengluan` to change the font or `setfont -d cengluan` to switch to a double-sized font.
 
 ## License
 

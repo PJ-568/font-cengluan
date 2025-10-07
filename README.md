@@ -2,9 +2,9 @@
 
 > [ENGLISH](README.en.md) | 简体中文
 
-## font-xibo
+## font-cengluan（层峦 TTY 字体）
 
-xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [cjktty](https://github.com/zhmars/cjktty-patches) 等内核补丁，
+cengluan 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [cjktty](https://github.com/zhmars/cjktty-patches) 等内核补丁，
 且不安装 [kmscon](http://www.freedesktop.org/wiki/Software/kmscon)、[fbterm](https://salsa.debian.org/debian/fbterm)
 或 [zhcon](https://zhcon.sourceforge.net/) 等第三方软件的环境下提供 TTY 中文显示。
 
@@ -15,7 +15,7 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 在使用本字体时，您可能注意到——读音相近的汉字会被统一显示为同一个汉字，如：“用永勇拥擁涌湧咏詠蛹雍踊庸踴泳”中的任意一个汉字会被会统一显示为“用”。
 
 这是因为 Linux TTY 上的字体一般用 kbd 软件包的 setfont 工具更换。它最多支持 512 个字形（glyph），但单个字形可以映射到多个 Unicode 码位。
-因此，xibo 将所有忽略声调的音节相同的汉字都会被映射到同一个字形上，以实现在有限字形数下的汉字显示。
+因此，font-cengluan 将所有忽略声调的音节相同的汉字都会被映射到同一个字形上，以实现在有限字形数下的汉字显示。
 
 ### 终端图形程序显示优化
 
@@ -48,7 +48,7 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
   其中，`┌` 被映射为字母 `r`，`┬` 被映射为字母 `T`，`┘` 被映射为字母 `J` 等。
   此类映射在尽量不占用更多字形的情况下最大程度地改善了显示效果（:-D）。
 
-  ![font-xibo 在 btop 下的表现](assets/btop.png)
+  ![font-cengluan 在 btop 下的表现](assets/btop.png)
 
 ### 字宽显示优化
 
@@ -66,8 +66,8 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 - 所有字符以宽二个单位显示：所有半角字符占满两行，但视觉宽仅一单位，导致[两个半角字符间有大空隙](assets/display_old.png)。
 
 鉴于寻找和设计“瘦高半角等宽汉字等字体”或“适配的全角英文字母等字体”的高难度。
-font-xibo 将所有英文字母、阿拉伯数字、ASCII 标点符号等字映射为 UTF-8 高位的全角字符。
-虽每个汉字间仍被一个[第三十二个字符](#第三十二个字符)隔开，font-xibo 在总体视觉上达到相对平衡。
+font-cengluan 将所有英文字母、阿拉伯数字、ASCII 标点符号等字映射为 UTF-8 高位的全角字符。
+虽每个汉字间仍被一个[第三十二个字符](#第三十二个字符)隔开，font-cengluan 在总体视觉上达到相对平衡。
 
 ### 第三十二个字符
 
@@ -78,8 +78,8 @@ Linux TTY 默认第字体的三十二个字符为 `U+20`，既空格。这个字
 1. 克隆仓库：
 
    ```shellscript
-   git clone https://github.com/PJ-568/font-xibo.git
-   cd font-xibo
+   git clone https://github.com/PJ-568/font-cengluan.git
+   cd font-cengluan
    ```
 
 2. 安装依赖项：
@@ -96,7 +96,7 @@ Linux TTY 默认第字体的三十二个字符为 `U+20`，既空格。这个字
 
    在构建过程中，脚本会安装 `psftools`，用于生成字体。
 
-构建完成后，会在 `output/` 生成一个名为 `xibo.psfu.gz` 的 PSF2 字体文件。
+构建完成后，会在 `output/` 生成一个名为 `cengluan.psfu.gz` 的 PSF2 字体文件。
 
 ## 使用字体
 
@@ -106,7 +106,7 @@ Linux TTY 默认第字体的三十二个字符为 `U+20`，既空格。这个字
 >
 > 执行 `setfont -V` 以检查版本。
 
-将 `xibo.psfu.gz` 放入 `consolefonts` 目录下（在 Debian 中位于 `/usr/share/consolefonts/`、在 Arch Linux 中位于 `/usr/share/kbd/consolefonts/`），执行 `setfont xibo` 更换字体或执行 `setfont -d xibo` 切换到两倍大小的字体。
+将 `cengluan.psfu.gz` 放入 `consolefonts` 目录下（在 Debian 中位于 `/usr/share/consolefonts/`、在 Arch Linux 中位于 `/usr/share/kbd/consolefonts/`），执行 `setfont cengluan` 更换字体或执行 `setfont -d cengluan` 切换到两倍大小的字体。
 
 ## 许可协议
 

@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 
 # 导入所需的库
+import sys
 from bdflib import reader
 
+# 检查命令行参数
+if len(sys.argv) < 2:
+    print("错误：请提供 BDF 字体文件路径作为参数")
+    print("用法：python3 build_font_from_bdf.py <bdf 文件路径>")
+    exit(1)
+
+bdf_file_path = sys.argv[1]
+
 # 读取 BDF 格式的字体文件
-font = reader.read_bdf(open("temp/fusion-pixel-12px-monospaced-zh_hans.bdf", "rb"))
+font = reader.read_bdf(open(bdf_file_path, "rb"))
 
 # File format version; currently this must be 0.
 version = '0'
