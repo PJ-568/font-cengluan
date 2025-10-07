@@ -85,7 +85,7 @@ xibo 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸如 [c
 
 ## 许可协议
 
-> 感谢**TakWolf**及其团队提供的 `fusion-pixel-font` 字体。
+> 感谢 **TakWolf** 及其团队提供的 `fusion-pixel-font` 字体。
 
 本仓库中的脚本文件 `build.bash`、`build_font_from_bdf.py` 和 `scripts/` 中的所有文件遵循 [GNU GENERAL PUBLIC LICENSE Version 3 许可协议](LICENSE)，
 `original/references/` 目录下的 `original/references/pinyin_hanzi` 遵循 GNU Lesser General Public License (LGPL) 2.1，其余参照文件遵循 [Unlicense 许可协议](original/references/LICENSE)，
