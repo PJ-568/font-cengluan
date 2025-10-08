@@ -36,7 +36,7 @@ This font also optimizes the mapping of commonly used graphical symbols in termi
 - After optimization:
 
   ```plaintext
-  r---T---┐
+  r---T---7
   |   |   |
   ├---+---┤
   |   |   |
