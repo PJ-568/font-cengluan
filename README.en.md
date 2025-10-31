@@ -31,6 +31,14 @@ This font also optimizes the mapping of commonly used graphical symbols in termi
 
 - Before optimization:
 
+  ```plaintext
+  ?????????
+  ?   ?   ?
+  ?????????
+  ?   ?   ?
+  ?????????
+  ```
+  
   (Cannot be displayed correctly)
 
 - After optimization:
@@ -108,9 +116,9 @@ Place `cengluan.psfu.gz` in the `consolefonts` directory (located at `/usr/share
 
 ## License
 
-> Thanks to [oldherl](https://github.com/oldherl) for their forward-looking technical exploration project [syllazh](https://github.com/oldherl/syllazh/);
+> Thanks to **[oldherl](https://github.com/oldherl)** for their forward-looking technical exploration project [syllazh](https://github.com/oldherl/syllazh/);
 >
-> Thanks to **TakWolf** and their team for providing the `fusion-pixel-font` font.
+> Thanks to **[TakWolf](https://github.com/TakWolf)** and their team for providing the [fusion-pixel-font](https://github.com/TakWolf/fusion-pixel-font).
 
 The script files `build.bash`, `build_font_from_bdf.py`, and all files in the `scripts/` directory in this repository follow the [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE),
 `original/references/pinyin_hanzi` in the `original/references/` directory follows the GNU Lesser General Public License (LGPL) 2.1, and other reference files follow the [Unlicense license](original/references/LICENSE),
