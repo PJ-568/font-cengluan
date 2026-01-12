@@ -8,7 +8,7 @@ mkdir -p $path/temp
 mkdir -p $path/output
 
 # 下载 fusion-pixel-12px-monospaced-zh_hans 的压缩包
-download_url="https://github.com/TakWolf/fusion-pixel-font/releases/download/2025.10.20/fusion-pixel-font-12px-monospaced-bdf-v2025.10.20.zip"
+download_url="https://github.com/TakWolf/fusion-pixel-font/releases/download/2026.01.04/fusion-pixel-font-12px-monospaced-bdf-v2026.01.04.zip"
 wget "$download_url" -O $path/temp/font.zip
 
 # 检查下载是否成功
