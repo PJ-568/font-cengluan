@@ -81,6 +81,7 @@ cengluan 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸�
 2. 将所有半角字符整数缩放二倍显示，全角字符在补全上下空行的情况下以原缩放比例显示。
 
    ![半角放大、全角补全](assets/Half-width_characters_extended__full-width_characters_complemented.svg)
+   ![新方案演示](assets/display_new.png)
    ![半角放大、全角补全 font-cengluan 在 btop 下的表现](assets/btop.png)
 
 虽每个全角字符右侧仍被一个[第三十二个字符](#第三十二个字符)隔开，font-cengluan 在总体视觉上达到相对平衡。

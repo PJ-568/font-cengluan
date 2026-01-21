@@ -77,6 +77,7 @@ Given the high difficulty of finding or designing "tall, thin half-width monospa
 2. Display all half-width characters with integer scaling doubled, while full-width characters are displayed at their original scaling ratio with padded blank lines above and below.
 
    ![Half-width scaling, full-width complement](assets/Half-width_characters_extended__full-width_characters_complemented.svg)
+   ![New approach look](assets/display_new.png)
    ![Half-width scaling, full-width complement font-cengluan performance in btop](assets/btop.png)
 
 Although each full-width character is still separated on the right by a [32nd character](#the-32nd-character), font-cengluan achieves a relatively balanced visual appearance overall.
