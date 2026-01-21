@@ -35,7 +35,7 @@ Version: {version}
 Flags: 1
 Length: 512
 Width: {width}
-Height: {height}''', end='')
+Height: {height * 2}''', end='')
 
 def PrintNonChineseCharacter(index):
     count = index
@@ -44,14 +44,14 @@ def PrintNonChineseCharacter(index):
     count += 1
 
     # 打开包含其他字符的参考文件
-    with open("original/references/other_characters", encoding="utf-8") as f:
+    with open("original/references/other_characters_new", encoding="utf-8") as f:
         for lines in f:
             line = lines.split()
             PrintCharacters(line[0], count)
             count += 1
     return count
 
-def PrintCharacters(Characters, count):
+def PrintCharacters(Characters, count, is_fullwidth_cha = False):
     Character = Characters[0] # 取第一个字符作为展示字
     try:
         # 将字符编码为对应编码
@@ -83,11 +83,27 @@ def PrintCharacters(Characters, count):
                 pixels[-bottom - h + i + v_offset][left + j] = ("#" if o_pixels[i][j] else "-")
 
         # 打印像素矩阵
-        for l in range(top_gap, height + 1 - bottom_gap):
-            ll = "".join(pixels[l])
-            if l < height :
-                ll = ll + " \\"
-            print(ll)
+        if is_fullwidth_cha: # 全角字符：一倍打印，上下补全
+            blank_row = "".join("-" for i in range(width))
+            for i in range(height // 2):
+                print(blank_row + " \\")
+            for row_h in range(top_gap, height + 1 - bottom_gap):
+                row = "".join(pixels[row_h])
+                print(row + " \\")
+            for i in range(height // 2 - 1):
+                print(blank_row + " \\")
+            print(blank_row)
+        else: # 半角字符：去掉右半边，把左半边缩放两倍打印
+            for row_h in range(top_gap, height + 1 - bottom_gap):
+                row = "".join(pixels[row_h])
+                row = row[:len(row)//2] # 去掉右半边
+                row = "".join(c * 2 for c in row) # 左右缩放两倍
+                if row_h < height:
+                    print(row + " \\")
+                    print(row + " \\")
+                else:
+                    print(row + " \\")
+                    print(row)
 
         # 打印字符的 Unicode 编码
         print("Unicode: ", end="")
@@ -113,5 +129,5 @@ with open("original/references/pinyin_hanzi", encoding="utf-8") as f:
         s = line.split() # 分开拼音和汉字
         if len(s) >= 2:
             hanzis = s[1] # 取汉字那一条
-            PrintCharacters(hanzis, count)
+            PrintCharacters(hanzis, count, True)
             count += 1

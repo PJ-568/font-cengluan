@@ -53,8 +53,6 @@ This font also optimizes the mapping of commonly used graphic symbols in termina
   Here, `┌` is mapped to the letter `r`, `┬` to `T`, `┘` to `J`, etc.
   Such mappings maximize display improvement while minimizing the use of additional glyphs (:-D).
 
-  ![font-cengluan performance in btop](assets/btop.png)
-
 ### Character Width Display Optimization
 
 In conventional text display scenarios:
@@ -69,11 +67,17 @@ However, PC Screen Font 2 (PSF2) is a fixed-width bitmap font format that does n
 - If all characters are displayed with a width of one unit: full-width characters only show the left half, with the right half displayed as the [32nd character](#the-32nd-character);
 - If all characters are displayed with a width of two units: all half-width characters occupy two columns, but visually they are only one unit wide, resulting in [large gaps between two half-width characters](assets/display_old_old.png).
 
-Given the high difficulty of finding or designing "tall and narrow half-width monospaced Chinese fonts" or "adapted full-width English letter fonts", the old solution of font-cengluan mapped all English letters, Arabic numerals, ASCII punctuation, etc., to full-width characters in the UTF-8 high range; the result was [still excessive spacing between half-width characters](assets/display_old.png).
+Given the high difficulty of finding or designing "tall, thin half-width monospaced Chinese character fonts" or "compatible full-width English letter fonts", font-cengluan adopts two design approaches:
 
-In the current solution, all half-width characters are scaled by an integer factor of two, while full-width characters are displayed at the original scaling ratio with complementary blank rows above and below.
+1. Map all English letters, Arabic numerals, ASCII punctuation, and similar characters to full-width characters in the UTF-8 high range;
+   the spacing between half-width characters remains slightly large.
 
-![Half-width characters extended, full-width characters complemented](assets/Half-width_characters_extended__full-width_characters_complemented.svg)
+   ![Full-width font-cengluan performance in btop](assets/btop_old.png)
+
+2. Display all half-width characters with integer scaling doubled, while full-width characters are displayed at their original scaling ratio with padded blank lines above and below.
+
+   ![Half-width scaling, full-width complement](assets/Half-width_characters_extended__full-width_characters_complemented.svg)
+   ![Half-width scaling, full-width complement font-cengluan performance in btop](assets/btop.png)
 
 Although each full-width character is still separated on the right by a [32nd character](#the-32nd-character), font-cengluan achieves a relatively balanced visual appearance overall.
 
@@ -81,7 +85,13 @@ Although each full-width character is still separated on the right by a [32nd ch
 
 In Linux TTY, the 32nd character of the default font is `U+20`, i.e., a space. This character is used to fill positions in the background where no character is present.
 
-## Building the Font
+## Get the Font
+
+### Downloading the Font
+
+- [Download the font](https://github.com/PJ-568/font-cengluan/releases/latest)
+
+### Building the Font
 
 1. Clone the repository:
 

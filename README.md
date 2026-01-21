@@ -56,8 +56,6 @@ cengluan 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸�
   其中，`┌` 被映射为字母 `r`，`┬` 被映射为字母 `T`，`┘` 被映射为字母 `J` 等。
   此类映射在尽量不占用更多字形的情况下最大程度地改善了显示效果（:-D）。
 
-  ![font-cengluan 在 btop 下的表现](assets/btop.png)
-
 ### 字宽显示优化
 
 在常规情景的文本显示中：
@@ -73,13 +71,17 @@ cengluan 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸�
 - 所有字符以宽一个单位显示：全角字符仅显示左半截，右半截显示为字体中的[第三十二个字符](#第三十二个字符)；
 - 所有字符以宽二个单位显示：所有半角字符占满两行，但视觉宽仅一单位，导致[两个半角字符间有大空隙](assets/display_old_old.png)。
 
-鉴于寻找和设计“瘦高半角等宽汉字等字体”或“适配的全角英文字母等字体”的高难度。
-旧方案下 font-cengluan 将所有英文字母、阿拉伯数字、ASCII 标点符号等字映射为 UTF-8 高位的全角字符；
-结果[半角字符之间的间隔仍过大](assets/display_old.png)。
+鉴于寻找和设计“瘦高半角等宽汉字等字体”或“适配的全角英文字母等字体”的高难度，font-cengluan 采取两种设计方案：
 
-当前方案下，将所有半角字符整数缩放二倍显示，全角字符在补全上下空行的情况下以原缩放比例显示。
+1. 将所有英文字母、阿拉伯数字、ASCII 标点符号等字映射为 UTF-8 高位的全角字符；
+   结果半角字符之间的间隔仍略大。
 
-![半角放大、全角补全](assets/Half-width_characters_extended__full-width_characters_complemented.svg)
+   ![全全角 font-cengluan 在 btop 下的表现](assets/btop_old.png)
+
+2. 将所有半角字符整数缩放二倍显示，全角字符在补全上下空行的情况下以原缩放比例显示。
+
+   ![半角放大、全角补全](assets/Half-width_characters_extended__full-width_characters_complemented.svg)
+   ![半角放大、全角补全 font-cengluan 在 btop 下的表现](assets/btop.png)
 
 虽每个全角字符右侧仍被一个[第三十二个字符](#第三十二个字符)隔开，font-cengluan 在总体视觉上达到相对平衡。
 
@@ -87,7 +89,13 @@ cengluan 是一个为 Linux 设计的中文 TTY 字体，旨在在不安装诸�
 
 Linux TTY 默认第字体的三十二个字符为 `U+20`，既空格。这个位置的字符被用来填充背景中没有字符的位置。
 
-## 构建字体
+## 获取字体
+
+### 下载
+
+- [下载最新版本](https://github.com/PJ-568/font-cengluan/releases/latest)
+
+### 构建
 
 1. 克隆仓库：
 
