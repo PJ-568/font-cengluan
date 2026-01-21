@@ -18,12 +18,14 @@ font = reader.read_bdf(open(bdf_file_path, "rb"))
 # File format version; currently this must be 0.
 version = '0'
 
-# 定义字体的高度和宽度
-height = 13
+# 所读取的字体的高度、宽度和字形上下间隔
+height = 12
 width = 12
+top_gap = 1
+bottom_gap = 0
 
 # 定义垂直偏移量
-v_offset = -2
+v_offset = -3
 
 # 初始化计数器
 count = 0
@@ -68,10 +70,12 @@ def PrintCharacters(Characters, count):
         # 打印字形的位图表示
         print("Bitmap: ", end="")
         o_pixels = [[y for y in x] for x in glyph.iter_pixels()]
+
+        # 取字形属性
         [left, bottom, w, h] = glyph.get_bounding_box()
 
         # 初始化一个空的像素矩阵
-        pixels = [["-" for j in range(0, width)] for i in range(0, height)]
+        pixels = [["-" for j in range(0, width)] for i in range(0, height + 1 + top_gap + bottom_gap)]
 
         # 填充像素矩阵
         for i in range(0, h):
@@ -79,9 +83,9 @@ def PrintCharacters(Characters, count):
                 pixels[-bottom - h + i + v_offset][left + j] = ("#" if o_pixels[i][j] else "-")
 
         # 打印像素矩阵
-        for l in range(0, height):
+        for l in range(top_gap, height + 1 - bottom_gap):
             ll = "".join(pixels[l])
-            if l < height - 1:
+            if l < height :
                 ll = ll + " \\"
             print(ll)
 
